@@ -1,11 +1,11 @@
 let properDivisorSum n =
   let mutable total = 1
-  let root = int (sqrt (float n))
-  for i in 2..root - 1 do
+  let root = sqrt (float n)
+  for i in 2..int root do
     if n % i = 0 then
       total <- total + i + n / i
-  if n % root = 0 then
-    total <- total + root
+  if root % 1.0 = 0.0 then
+    total <- total - int root
   total
 
 let mutable total = 0
