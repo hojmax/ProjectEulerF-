@@ -1,4 +1,3 @@
-open System
 let mutable possible = Set.empty
 
 let iPown a b =
