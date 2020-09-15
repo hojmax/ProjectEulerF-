@@ -15,7 +15,7 @@ let digitFactorial number =
   total
 
 let mutable total = 0
-// Kan max være 7-cifrede tal, da 8 * 9! = 2903040, hvilket er 7-cifret
+// Kan max være 7-cifrede tal, da 8 * 9! = 2903040, hvilket ikke er 8-cifret
 for i in 3..9999999 do
   if digitFactorial i = i then
     total <- total + i
