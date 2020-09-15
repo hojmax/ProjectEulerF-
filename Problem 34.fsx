@@ -4,7 +4,7 @@ let factorial number =
     total <- total * i
   total
 
-let preComputedFactorials = [|for i in 0..9 -> factorial i|]
+let precomputedFactorials = [|for i in 0..9 -> factorial i|]
 
 let digitFactorial number =
   let mutable n = number
