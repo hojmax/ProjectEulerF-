@@ -55,7 +55,7 @@ let isTruncatable number =
     n <- number
     let mutable digits = digitAmount number
     while isUnsure && n >= 10 do
-      n <- n - n / (pown 10 (digits - 1)) * (pown 10 (digits - 1))
+      n <- n % (pown 10 (digits - 1))
       isUnsure <- isPrime n
       digits <- digits - 1
   isUnsure
