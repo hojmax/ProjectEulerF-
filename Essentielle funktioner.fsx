@@ -11,6 +11,7 @@ let primeFactors number =
     result <- n :: result
   result
 
+// Kan udvides til at kunne håndtere større tal
 let digitAmount n =
   let mutable i = n
   let mutable result = 1
