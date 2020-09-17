@@ -8,10 +8,15 @@ let mutable dirX = 1
 let mutable dirY = 0
 let mutable moveLength = 1
 
-// For debugging
+// Til debugging
 let print2dArray (array: int[][]) =
-  for i in 0..array.Length-1 do
-    printfn "%A" array.[i]
+  for i in 0..array.Length - 1 do
+    for j in 0..array.[i].Length - 1 do
+      if array.[i].[j] < 10 then
+        printf " %A " array.[i].[j]
+      else
+        printf "%A " array.[i].[j]
+    printfn ""
 
 while count < pown (gridSize - 2) 2 do
   for j in 0..1 do
