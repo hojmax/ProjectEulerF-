@@ -8,6 +8,7 @@ let mutable dirX = 1
 let mutable dirY = 0
 let mutable moveLength = 1
 
+// For debugging
 let print2dArray (array: int[][]) =
   for i in 0..array.Length-1 do
     printfn "%A" array.[i]
