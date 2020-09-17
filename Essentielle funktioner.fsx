@@ -7,7 +7,7 @@ let primeFactors number =
       result <- i :: result
       n <- n / i
     i <- i + 1
-  if not (n = 1) then
+  if n <> 1 then
     result <- n :: result
   result
 
