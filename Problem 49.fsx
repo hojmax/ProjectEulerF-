@@ -37,8 +37,8 @@ for e in candidates do
   while n >= 1 do
     originalDigits.[n % 10] <- originalDigits.[n % 10] + 1
     n <- n / 10
-  for i in 1..2 do
-    if isUnsure then
+  let mutable i = 1
+  while isUnsure && i <= 2 do
       let equalDigitsCheck = Array.copy originalDigits
       let mutable m = e + i * interval
       isUnsure <- isPrime m
@@ -48,5 +48,6 @@ for e in candidates do
           isUnsure <- false
         else
           m <- m / 10
+      i <- i + 1
   if isUnsure then
     printfn "%A %A %A" e (e + interval) (e + 2 * interval)
