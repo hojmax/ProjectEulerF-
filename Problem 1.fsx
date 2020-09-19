@@ -1,8 +1,4 @@
-let mutable result = 0
-for i in 0..999 do
-  if i % 3 = 0 then
-    result <- result + i
-  elif i % 5 = 0 then
-    result <- result + i
+let sum n = n * (n + 1) / 2
+let limit = 1000
 
-printfn "%A" result
+printfn "%A" (sum ((limit - 1) / 3) * 3 + sum ((limit - 1) / 5) * 5 - sum ((limit - 1) / 15) * 15)
