@@ -7,6 +7,14 @@ let iPown a b =
     result <- result * a
   result
 
+(*
+Begrænsninger:
+1. ciffer kan ikke være 0
+4. ciffer skal være 2, 4, 6, 8 eller 0
+6. ciffer er 5 eller 0
+8-10 skal kunne divideres med 17
+*)
+
 // Den her løsning er ikke særlig elegant. Har et meget lignende problem i opgave 31, og er ikke sikker på hvordan det kan løses bedre.
 for a in 6..58 do
   let mutable a123 = [|-1;-1;-1|]
