@@ -29,7 +29,7 @@ let isPrime n =
       prime
 
 let limit = int 1e6 - 1
-let primes = primeSieve (limit)
+let primes = primeSieve limit
 let mutable interval = 2
 let mutable bottomIndex = 0
 let mutable shouldContinue = true
