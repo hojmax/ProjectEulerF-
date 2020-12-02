@@ -4,8 +4,7 @@ let mutable answer = (0.0,0.0)
 for d in 1.0..1e6 do
   let numerator = floor (target * d)
   let denominator = d
-  let current =  numerator / denominator
-  let currentDistance = target - current
+  let currentDistance = target - numerator / denominator
   if currentDistance <> 0.0 && currentDistance < distance then
     answer <- (numerator, denominator)
     distance <- currentDistance
