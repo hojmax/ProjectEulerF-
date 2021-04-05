@@ -1,3 +1,6 @@
+from collections import defaultdict
+
+
 def primeSieve(minVal, n):
     prime = [True for i in range(n + 1)]
     output = []
@@ -11,23 +14,6 @@ def primeSieve(minVal, n):
         if prime[p]:
             output.append(p)
     return output
-
-
-def digitAmount(n):
-    result = 1
-    if n >= 100000000:
-        result += 8
-        n /= 100000000
-    if n >= 10000:
-        result += 4
-        n /= 10000
-    if n >= 100:
-        result += 2
-        n /= 100
-    if n >= 10:
-        result += 1
-        n /= 10
-    return result
 
 
 def hasRelation(n1, n2):
@@ -46,24 +32,11 @@ def hasRelation(n1, n2):
     return True
 
 
-def addRelation(n1, n2, relations):
-    if n1 in relations:
-        relations[n1].add(n2)
-    else:
-        relations[n1] = {n2}
-    if n2 in relations:
-        relations[n2].add(n1)
-    else:
-        relations[n2] = {n1}
-
-
 def getRelations(primes, magnitude):
     mag1 = 10**(magnitude-1)
     mag2 = 10**(magnitude-2)
-    relations = dict()
+    relations = defaultdict(set)
     for i in range(len(primes)):
-        if i % 1000 == 0: 
-            print(i/len(primes)*100,"%")
         i1 = primes[i] // mag1
         i2 = primes[i] // mag2 % 10
         for j in range(i+1, len(primes)):
@@ -72,7 +45,8 @@ def getRelations(primes, magnitude):
             if (i1 != i2 or j1 != j2) and j1 != i1 and j2 != i2:
                 continue
             if hasRelation(primes[i], primes[j]):
-                addRelation(primes[i], primes[j], relations)
+                relations[primes[i]].add(primes[j])
+                relations[primes[j]].add(primes[i])
     return relations
 
 
@@ -96,18 +70,29 @@ def intersectionWipe(relations, goal):
     for e in removalPairs:
         relations[e[0]].remove(e[1])
 
+
+def getCleanRelation(primes, goal, magnitude):
+    relations = getRelations(primes, magnitude)
+    lastLen = -1
+    while lastLen != len(relations):
+        while lastLen != len(relations):
+            lastLen = len(relations)
+            lengthWipe(relations, goal)
+        intersectionWipe(relations, goal)
+        lengthWipe(relations, goal)
+    return relations
+
+
 magnitude = 6
 primes = primeSieve(10**(magnitude-1), 10**magnitude)
+subsets = {1: [], 3: [], 7: [], 9: []}
 goal = 8
-relations = getRelations(primes, magnitude)
-print("Relations!")
-lastLen = -1
 
-while lastLen != len(relations):
-    while lastLen != len(relations):
-        lastLen = len(relations)
-        lengthWipe(relations, goal)
-    intersectionWipe(relations,goal)
-    lengthWipe(relations, goal)
+for p in primes:
+    subsets[p % 10].append(p)
 
-print(relations)
+for e in subsets:
+    possible = getCleanRelation(subsets[e], goal, magnitude)
+    if len(possible) > 0:
+        print(possible)
+        break
